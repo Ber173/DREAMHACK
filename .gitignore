@@ -1,0 +1,20 @@
+# IDE / editor
+.vscode/
+__pycache__/
+*.log
+
+# IDA Pro databases
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+*.i64
+*.idb
+
+# Misc binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.pdb
