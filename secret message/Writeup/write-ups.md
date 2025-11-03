@@ -88,7 +88,7 @@ __int64 __fastcall sub_7FA(FILE *a1, FILE *a2)
     - Nếu `c` khác `v5` thì `v5 = c` và bắt đầu vòng lặp mới.
     - Nếu `c` bằng `v5` thì tăng biến `v3` lên một đơn vị
 
-    - Với mỗi một chuỗi có các kí tự giống nhau liên tiếp thì nó chỉ in ra kí tự đầu và theo sau đó là số lần liên tiếp giống nhau của kí tự đó.
+    - Với mỗi một chuỗi có các kí tự giống nhau liên tiếp thì nó chỉ in ra kí tự đầu, kí tự thứ hai và theo sau đó là số lần liên tiếp giống nhau của kí tự đó.
 
     - Ví dụ: ``input = a a a b b b b b b c c`` thì ``output = a a 1 b b 3 c c 0``
 
