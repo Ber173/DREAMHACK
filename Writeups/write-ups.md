@@ -1,14 +1,96 @@
-# WRITE-UPS
+# Write-ups
+
+# [CodeEngn] Malware L06
+## Định nghĩa ThreatMutex
+- Thread Mutex (Mutual Exclusion) là cơ chế khóa dùng trong lập trình đa luồng để đảm bảo chỉ 1 luồng được vào vùng “tài nguyên dùng chung” (critical section) tại một thời điểm, tránh race condition (ghi/đọc chồng chéo gây lỗi dữ liệu).
+
+## Ở trong File PDF, ta thấy có hàm ``CreateMutexA``, ta xem một số thông tin hàm đó như sau
+
+https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexa
+
+![alt text](image.png)
+
+- Syntax của hàm trên cho ta thấy lpName là tên của Mutex
+- Ta có 2 Mutex như sau:
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+- Mutex thứ nhất dùng để tạo một luồng ở phía trên nó, còn mutex thứ 2 là ``thread mutex``.
+
+---> Flag: ``smtp_bagla_1000``
+
+---
+# [CodeEngn] Malware L07
+
+## Đề cho ta một file PDF
+
+![alt text](image-5.png)
+
+## Quét nhanh qua code thì ta thấy có một vòng lặp
+
+![alt text](image-3.png)
+
+- Mạnh dạn đoán đó là vòng lặp khi không truy cập được Web.
+- Ta thấy trước hàm sleep, có câu lệnh ``push 96000h``.
+- Đây chính là thời gian nghỉ giữa các lần truy cập web.
+
+## Sử dụng python để chuyển mã hex sang dec
+![alt text](image-4.png)
+
+---> Flag: ``614400``
+
+---
+# r-xor-t
+
+## Bỏ file thực thi vào IDA và phân tích
+- Nhấn shift + F12 để tìm các chuỗi trong file
+
+![alt text](image-11.png)
+
+- đúp chuột vào `Nice!`
+
+![alt text](image-6.png)
+
+- Nhấn vào `aNice`và gõ x để đến hàm dùng chuỗi này
+
+![alt text](image-7.png)
+
+![alt text](image-8.png)
+
+- F5 để biên dịch chương trình
+
+![alt text](image-9.png)
+
+- Ta thấy các phép biến đổi được làm tường tự, ta chỉ cần code làm ngược lại bằng đoạn code sau
+
+```
+tmp = b'C@qpl==Bppl@<=pG<>@l>@Blsp<@l@AArqmGr=B@A>q@@B=GEsmC@ArBmAGlA=@q'
+res = ''.join(chr((b ^ 3) - 13) for b in tmp[::-1])
+print(res)
+```
+
+---> Tìm được password của chương trình như sau: `e615b75a4d563ac971466e05641d7aed556b62fcb460b6027f126bff411bfe63`
+
+- Thực thi chương trình và nhập ``Input`` vào, ta được Flag
+
+![alt text](image-10.png)
+
+---> Flag: ``DH{e615b75a4d563ac971466e05641d7aed556b62fcb460b6027f126bff411bfe63}``
+
+---
+# secret message
 
 ## Tải và giải nén file
 
 ## Dùng IDA để biên dịch file prob
 
-![alt text](image.png)
+![alt text](image-12.png)
 
 - Nhấn đúp vào main và gõ F5 để biên dịch sang C
 
-![alt text](image-1.png)
+![alt text](image-13.png)
 - Ta thấy file thực thi mở `secretMessage.raw` và xóa đi sau khi sử dụng trong hàm `sub_7FA`.
 
 ## Ta bắt đầu đi sâu vào hàm ``sub_7FA``
@@ -145,10 +227,47 @@ if __name__ == "__main__":
 - Sau khi thực thi file trên thì nó in ra ``secretMessage.dec`` cho mình với tất cả mã byte bên trong.
 - Ta thực thi file ``imageviewer.py`` bằng câu lệnh để lấy ``secretMessage.dec`` làm tham số.
 
-![alt text](image-2.png)
+![alt text](image-14.png)
 
 - Sau khi thực thi chương trình, ta có ảnh như sau:
 
-![alt text](image-3.png)
+![alt text](image-15.png)
 
 --> Flag: ``DH{93589e6c1db065fa95075ab5e3790bc1}``
+
+---
+# Easy Assembly
+
+## Kiểm tả file
+
+![alt text](image-18.png)
+
+## Dùng IDA để biên dịch sang ASM
+
+![alt text](image-16.png)
+- Ở đây ta có thể biết chắc rằng enc_flag là flag ta cần tìm.
+- Chuỗi của ta nhập và sẽ được lưu ở esi, còn chuỗi flag được lưu về esi.
+
+## Truy cập vào hàm check_password
+
+![alt text](image-17.png)
+- Khúc này đã quá rõ để tìm password, ta sẽ làm ngược lại các bước trên bằng đoạn code dưới đây
+
+## Ta có đoạn code decrypt như sau
+
+```
+enc_flag = [0x74, 0x78, 0x4B, 0x65, 0x77, 0x48, 0x5C, 0x69, 0x68, 0x7E, 0x5C, 0x79, 0x77, 0x62, 0x46, 0x79, 0x77, 0x05, 0x46, 0x54, 0x73, 0x72, 0x59, 0x69, 0x68, 0x7E, 0x5C, 0x7E, 0x5A, 0x61, 0x57, 0x6A, 0x77, 0x66, 0x5A, 0x52, 0x02, 0x62, 0x5C, 0x79, 0x77, 0x5C, 0x00, 0x7C, 0x57, 0x0D, 0x0D, 0x4D, 0x00]
+
+len = 48
+
+key = [0] * len
+tmp = ""
+
+for i in range(len):
+    key[i] = enc_flag[i] ^ len
+    tmp = tmp + chr(key[i])
+
+print(tmp)
+```
+
+--> Flag: `` DH{UGxlYXNlIGRvIG5vdCBiYXNlNjQgZGVjb2RlIGl0Lg==}``
