@@ -271,3 +271,31 @@ print(tmp)
 ```
 
 --> Flag: `` DH{UGxlYXNlIGRvIG5vdCBiYXNlNjQgZGVjb2RlIGl0Lg==}``
+
+--- 
+# Batch checker
+
+## Đề bài cho ta một file có đuôi bat
+- Bổ sung kiến thức: File .bat là một loại tệp văn bản thuần túy (plain text file) chứa một chuỗi các lệnh mà hệ điều hành Windows (cũng như MS-DOS trước đây) sẽ thực thi tuần tự, từng lệnh một, giống như thể bạn đang gõ chúng vào Command Prompt (CMD).
+
+- Trong file sẽ có 2 phần: 
+  - ``SET  "vFKIqCf...bUIryEWWNrCSRc=ulZiZYfKD...enBoJNWtVH"``:
+
+![alt text](image-19.png)
+
+  - ``%tWtDFx....hCubwM:~53,1%``:
+---> SET "name=content": Đặt biến `name` với nội dung là `content`.
+
+![alt text](image-20.png)
+---> ``%name:~n,x%``: Lấy ``x`` kí tự bắt đầu từ vị trí thứ ``n`` trong chuỗi có tên là `name`.
+
+- Ta paste phần SET lên trên ``CMD``, để set up các biến.
+- Ta thấy ở những câu lệnh đầu khi ta dùng câu lệnh `echo` để in ra thì ta được đáp án là `echo off`, này là một câu lệnh tắt hoạt động của ``echo``.
+- Vậy nên ta né đoạn trên và bắt đầu `echo` đoạn sau, ta được kết quả như sau:
+
+![alt text](image-22.png)
+
+![alt text](image-23.png)
+- ta thấy `FLAG%==BA7cH_cAN_hiDe_u5iNg_text(echo correct) else (echo wrong)`: đây là một câu lệnh if else.
+
+---> Flag: `DH{BA7cH_cAN_hiDe_u5iNg_text}`
