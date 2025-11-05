@@ -1,5 +1,13 @@
 # Write-ups
 
+## Mục lục
+- [[CodeEngn] Malware L06](#codeengn-malware-l06)
+- [[CodeEngn] Malware L07](#codeengn-malware-l07)
+- [r-xor-t](#r-xor-t)
+- [secret message](#secret-message)
+- [Easy Assembly](#easy-assembly)
+- [Batch checker](#batch-checker)
+
 # [CodeEngn] Malware L06
 ## Định nghĩa ThreatMutex
 - Thread Mutex (Mutual Exclusion) là cơ chế khóa dùng trong lập trình đa luồng để đảm bảo chỉ 1 luồng được vào vùng “tài nguyên dùng chung” (critical section) tại một thời điểm, tránh race condition (ghi/đọc chồng chéo gây lỗi dữ liệu).
