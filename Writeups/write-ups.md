@@ -16,14 +16,14 @@
 
 https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexa
 
-![alt text](image.png)
+![alt text](img/image.png)
 
 - Syntax của hàm trên cho ta thấy lpName là tên của Mutex
 - Ta có 2 Mutex như sau:
 
-![alt text](image-1.png)
+![alt text](img/image-1.png)
 
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
 - Mutex thứ nhất dùng để tạo một luồng ở phía trên nó, còn mutex thứ 2 là ``thread mutex``.
 
@@ -34,18 +34,18 @@ https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createm
 
 ## Đề cho ta một file PDF
 
-![alt text](image-5.png)
+![alt text](img/image-5.png)
 
 ## Quét nhanh qua code thì ta thấy có một vòng lặp
 
-![alt text](image-3.png)
+![alt text](img/image-3.png)
 
 - Mạnh dạn đoán đó là vòng lặp khi không truy cập được Web.
 - Ta thấy trước hàm sleep, có câu lệnh ``push 96000h``.
 - Đây chính là thời gian nghỉ giữa các lần truy cập web.
 
 ## Sử dụng python để chuyển mã hex sang dec
-![alt text](image-4.png)
+![alt text](img/image-4.png)
 
 ---> Flag: ``614400``
 
@@ -55,21 +55,21 @@ https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createm
 ## Bỏ file thực thi vào IDA và phân tích
 - Nhấn shift + F12 để tìm các chuỗi trong file
 
-![alt text](image-11.png)
+![alt text](img/image-11.png)
 
 - đúp chuột vào `Nice!`
 
-![alt text](image-6.png)
+![alt text](img/image-6.png)
 
 - Nhấn vào `aNice`và gõ x để đến hàm dùng chuỗi này
 
-![alt text](image-7.png)
+![alt text](img/image-7.png)
 
-![alt text](image-8.png)
+![alt text](img/image-8.png)
 
 - F5 để biên dịch chương trình
 
-![alt text](image-9.png)
+![alt text](img/image-9.png)
 
 - Ta thấy các phép biến đổi được làm tường tự, ta chỉ cần code làm ngược lại bằng đoạn code sau
 
@@ -83,7 +83,7 @@ print(res)
 
 - Thực thi chương trình và nhập ``Input`` vào, ta được Flag
 
-![alt text](image-10.png)
+![alt text](img/image-10.png)
 
 ---> Flag: ``DH{e615b75a4d563ac971466e05641d7aed556b62fcb460b6027f126bff411bfe63}``
 
@@ -94,16 +94,16 @@ print(res)
 
 ## Dùng IDA để biên dịch file prob
 
-![alt text](image-12.png)
+![alt text](img/image-12.png)
 
 - Nhấn đúp vào main và gõ F5 để biên dịch sang C
 
-![alt text](image-13.png)
+![alt text](img/image-13.png)
 - Ta thấy file thực thi mở `secretMessage.raw` và xóa đi sau khi sử dụng trong hàm `sub_7FA`.
 
 ## Ta bắt đầu đi sâu vào hàm ``sub_7FA``
 - Bên trong hàm có được code dưới dạng C như sau.
-```!code
+```c
 __int64 __fastcall sub_7FA(FILE *a1, FILE *a2)
 {
   unsigned __int8 v3; // [rsp+17h] [rbp-9h]
@@ -183,7 +183,7 @@ __int64 __fastcall sub_7FA(FILE *a1, FILE *a2)
     - Ví dụ: ``input = a a a b b b b b b c c`` thì ``output = a a 1 b b 3 c c 0``
 
 - dựa vào code trên thì ta đã có code encypt, giờ ta sẽ code phần decrypt như sau:
-```!code
+```c
 # decode_enc.py
 def rle_decode_bytes(data: bytes) -> bytes:
     """
@@ -235,11 +235,11 @@ if __name__ == "__main__":
 - Sau khi thực thi file trên thì nó in ra ``secretMessage.dec`` cho mình với tất cả mã byte bên trong.
 - Ta thực thi file ``imageviewer.py`` bằng câu lệnh để lấy ``secretMessage.dec`` làm tham số.
 
-![alt text](image-14.png)
+![alt text](img/image-14.png)
 
 - Sau khi thực thi chương trình, ta có ảnh như sau:
 
-![alt text](image-15.png)
+![alt text](img/image-15.png)
 
 --> Flag: ``DH{93589e6c1db065fa95075ab5e3790bc1}``
 
@@ -248,17 +248,17 @@ if __name__ == "__main__":
 
 ## Kiểm tra file
 
-![alt text](image-18.png)
+![alt text](img/image-18.png)
 
 ## Dùng IDA để biên dịch sang ASM
 
-![alt text](image-16.png)
+![alt text](img/image-16.png)
 - Ở đây ta có thể biết chắc rằng enc_flag là flag ta cần tìm.
 - Chuỗi của ta nhập và sẽ được lưu ở esi, còn chuỗi flag được lưu về esi.
 
 ## Truy cập vào hàm check_password
 
-![alt text](image-17.png)
+![alt text](img/image-17.png)
 - Khúc này đã quá rõ để tìm password, ta sẽ làm ngược lại các bước trên bằng đoạn code dưới đây
 
 ## Ta có đoạn code decrypt như sau
@@ -289,22 +289,24 @@ print(tmp)
 - Trong file sẽ có 2 phần: 
   - ``SET  "vFKIqCf...bUIryEWWNrCSRc=ulZiZYfKD...enBoJNWtVH"``:
 
-![alt text](image-19.png)
+![alt text](img/image-19.png)
 
 ---> SET "name=content": Đặt biến `name` với nội dung là `content`.
 
 
   - ``%tWtDFx....hCubwM:~53,1%``:
-![alt text](image-20.png)
+![alt text](img/image-20.png)
 ---> ``%name:~n,x%``: Lấy ``x`` kí tự bắt đầu từ vị trí thứ ``n`` trong chuỗi có tên là `name`.
 
 - Ta paste phần SET lên trên ``CMD``, để set up các biến.
 - Ta thấy ở những câu lệnh đầu khi ta dùng câu lệnh `echo` để in ra thì ta được đáp án là `echo off`, này là một câu lệnh tắt hoạt động của ``echo``.
 - Vậy nên ta né đoạn trên và bắt đầu `echo` đoạn sau, ta được kết quả như sau:
 
-![alt text](image-22.png)
+![alt text](img/image-22.png)
 
-![alt text](image-23.png)
+![alt text](img/image-23.png)
 - ta thấy `FLAG%==BA7cH_cAN_hiDe_u5iNg_text(echo correct) else (echo wrong)`: đây là một câu lệnh if else.
 
 ---> Flag: `DH{BA7cH_cAN_hiDe_u5iNg_text}`
+
+
