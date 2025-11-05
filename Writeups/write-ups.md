@@ -246,7 +246,7 @@ if __name__ == "__main__":
 ---
 # Easy Assembly
 
-## Kiểm tả file
+## Kiểm tra file
 
 ![alt text](image-18.png)
 
