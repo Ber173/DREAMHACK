@@ -291,9 +291,10 @@ print(tmp)
 
 ![alt text](image-19.png)
 
-  - ``%tWtDFx....hCubwM:~53,1%``:
 ---> SET "name=content": Đặt biến `name` với nội dung là `content`.
 
+
+  - ``%tWtDFx....hCubwM:~53,1%``:
 ![alt text](image-20.png)
 ---> ``%name:~n,x%``: Lấy ``x`` kí tự bắt đầu từ vị trí thứ ``n`` trong chuỗi có tên là `name`.
 
