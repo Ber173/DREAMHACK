@@ -1,2 +1,2 @@
 # DREAMHACK
-Repo này để giải CTF trên dreamhack
+## Repo này để giải CTF trên dreamhack
