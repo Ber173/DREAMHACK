@@ -3,6 +3,7 @@
 ## Mục lục
 - [[CodeEngn] Malware L06](#codeengn-malware-l06)
 - [[CodeEngn] Malware L07](#codeengn-malware-l07)
+- [[CodeEngn] Malware L08](#codeengn-malware-l08)
 - [r-xor-t](#r-xor-t)
 - [secret message](#secret-message)
 - [Easy Assembly](#easy-assembly)
@@ -52,6 +53,21 @@ https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createm
 
 ---> Flag: ``614400``
 
+---
+# [CodeEngn] Malware L08
+## Xem file PDF
+- Có quá nhiều luồng làm cho đồ thị khá rối lắm, để dễ dàng tìm được thì ta sẽ tìm vào các điểm mấu chốt có thể thực thi mã đọc.
+- Ở đây ta thấy trong code Install gì đó về.
+
+<img width="1010" height="451" alt="image" src="https://github.com/user-attachments/assets/bf420d16-681d-404f-b8b5-16cb5172385a" />
+
+- Di chuyển xuống dưới thì ta thấy có 3 mục trong đó có 2 mục là gọi hàm `ShellExcuteExA`.
+<img width="1064" height="698" alt="image" src="https://github.com/user-attachments/assets/148293b7-6790-4c64-a901-9bf288c17fdb" />
+
+- ở mục `1` nếu  `false` thì sẽ thực hiện mục `2`, nên tôi nghĩ có thể đây là nơi thực thi mã độc.
+- Vậy ở mục `1` là nơi đầu thực thi mã độc với địa chỉ là `004025F4`.
+
+-->  Flag: `004025F4`
 ---
 # r-xor-t
 
@@ -327,4 +343,7 @@ print(tmp)
 - ta thấy `FLAG%==BA7cH_cAN_hiDe_u5iNg_text(echo correct) else (echo wrong)`: đây là một câu lệnh if else.
 
 ---> Flag: `DH{BA7cH_cAN_hiDe_u5iNg_text}`
+
+
+
 
