@@ -1,4 +1,4 @@
-<img width="1374" height="309" alt="image" src="https://github.com/user-attachments/assets/5652d1af-58c9-4a7a-bbda-958d8e552642" /># Write-ups
+# Write-ups
 
 ## Mục lục
 - [[CodeEngn] Malware L06](#codeengn-malware-l06)
@@ -362,9 +362,9 @@ print(tmp)
 - Kiểm tra với 2 tham số bất kì.
 <img width="1449" height="458" alt="image" src="https://github.com/user-attachments/assets/1099be9d-c755-4bde-a087-710293d1f315" />
 
-- Hiện tại tôi không thể debug bằng IDA nên tôi sẽ kết hợp phân tích giữa pwndbg và IDA.
-- Phân tích trong IDA, tôi thấy 2 luồng đúng sai rõ ràng ở đây nên tôi đổi màu đễ dễ nhìn.
-- 
+- Hiện tại tôi không thể debug bằng IDA nên tôi sẽ kết hợp phân tích giữa ``pwndbg`` và ``IDA``.
+- Phân tích trong ``IDA``, tôi thấy 2 luồng đúng sai rõ ràng ở đây nên tôi đổi màu đễ dễ nhìn.
+
 <img width="701" height="352" alt="image" src="https://github.com/user-attachments/assets/e97491f1-0883-4258-bc4e-63ecc2c87a26" />
 
 - Khi thực thi điều kiện 2 tham số, ta sẽ đến bước này.
@@ -386,8 +386,9 @@ print(tmp)
 <img width="1434" height="234" alt="image" src="https://github.com/user-attachments/assets/f35ef0eb-2d51-4750-81bd-0108c043301a" />
 
 - Tiếp tục chương trình ta thấy có một chuỗi `why_don'7_y0u_j0in_ro11in6_r3ss????` truyền vào sau `DH{`.
+
 <img width="1374" height="309" alt="image" src="https://github.com/user-attachments/assets/da3be4ea-2176-41f5-8a2f-18a11226a453" />
- 
+
 --> Flag: `DH{why_don'7_y0u_j0in_ro11in6_r3ss????}`
 
 
