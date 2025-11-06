@@ -8,6 +8,7 @@
 - [secret message](#secret-message)
 - [Easy Assembly](#easy-assembly)
 - [Batch checker](#batch-checker)
+- [Stop before stops!](#stop-before-stops)
 
 # [CodeEngn] Malware L06
 ## Định nghĩa ThreatMutex
@@ -346,7 +347,7 @@ print(tmp)
 
 ---> Flag: `DH{BA7cH_cAN_hiDe_u5iNg_text}`
 
---- 
+---
 # Stop before stops!
 
 ## Bài này tôi sẻ sử dụng `pwndbg` để debug
