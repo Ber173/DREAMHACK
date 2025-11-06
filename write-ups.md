@@ -57,6 +57,8 @@ https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createm
 # [CodeEngn] Malware L08
 ## Xem file PDF
 - Có quá nhiều luồng làm cho đồ thị khá rối lắm, để dễ dàng tìm được thì ta sẽ tìm vào các điểm mấu chốt có thể thực thi mã đọc.
+<img width="587" height="835" alt="image" src="https://github.com/user-attachments/assets/40cd1337-958d-4868-aea7-79f793eba206" />
+
 - Ở đây ta thấy trong code Install gì đó về.
 
 <img width="1010" height="451" alt="image" src="https://github.com/user-attachments/assets/bf420d16-681d-404f-b8b5-16cb5172385a" />
