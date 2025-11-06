@@ -1,4 +1,4 @@
-# Write-ups
+<img width="1374" height="309" alt="image" src="https://github.com/user-attachments/assets/5652d1af-58c9-4a7a-bbda-958d8e552642" /># Write-ups
 
 ## Mục lục
 - [[CodeEngn] Malware L06](#codeengn-malware-l06)
@@ -346,6 +346,47 @@ print(tmp)
 
 ---> Flag: `DH{BA7cH_cAN_hiDe_u5iNg_text}`
 
+--- 
+# Stop before stops!
 
+## Bài này tôi sẻ sử dụng `pwndbg` để debug
+<img width="1274" height="302" alt="image" src="https://github.com/user-attachments/assets/b7fd1420-d600-47de-9838-59c2038bf559" />
+
+- Đặt breakpoint tại main
+<img width="303" height="49" alt="image" src="https://github.com/user-attachments/assets/b770511d-8fc5-4d26-a385-4fbb5d8765a9" />
+
+- Kiểm tra trong IDA ta tháy để chương trình thực thi được thì ta phải truyền 2 đối số, với độ dài của tham số thứ nhất bằng 24 và 
+<img width="1066" height="387" alt="image" src="https://github.com/user-attachments/assets/bf835dbe-b955-4b8b-884d-41447eb67875" />
+
+- Kiểm tra với 2 tham số bất kì.
+<img width="1449" height="458" alt="image" src="https://github.com/user-attachments/assets/1099be9d-c755-4bde-a087-710293d1f315" />
+
+- Hiện tại tôi không thể debug bằng IDA nên tôi sẽ kết hợp phân tích giữa pwndbg và IDA.
+- Phân tích trong IDA, tôi thấy 2 luồng đúng sai rõ ràng ở đây nên tôi đổi màu đễ dễ nhìn.
+- 
+<img width="701" height="352" alt="image" src="https://github.com/user-attachments/assets/e97491f1-0883-4258-bc4e-63ecc2c87a26" />
+
+- Khi thực thi điều kiện 2 tham số, ta sẽ đến bước này.
+
+<img width="1666" height="705" alt="image" src="https://github.com/user-attachments/assets/e9b78cb1-7880-4a5b-a510-1c86df2cb55f" />
+
+- Quay lại pwndbg, để đến được hàm đó, ta cần phải nhảy tới `main + 67`.
+
+<img width="1666" height="705" alt="image" src="https://github.com/user-attachments/assets/2dff5829-e806-4de5-8a9b-3dac5ee04f55" />
+
+- Nhấn `ni` và gõ `enter` và dừng lại ở bước này
+- Ta set lại giá trị của thanh ghi như sau để cờ Zero flag được bật.
+<img width="359" height="51" alt="image" src="https://github.com/user-attachments/assets/e423093e-3f73-441c-ad75-3431e4dacd8c" />
+
+- `ni` và ta thấy dấu hiệu sẽ đổi.
+<img width="694" height="74" alt="image" src="https://github.com/user-attachments/assets/91566f46-5133-4b4a-8c9c-628ec57b3f39" />
+
+- Tiếp tục nhấn `ni` thì ta thấy có chuỗi sau, chuỗi 'BcREx1TUe?mB=i:<Sx_qpJW4' này cũng là chuỗi tham số thứ nhất mà ta truyền vào.
+<img width="1434" height="234" alt="image" src="https://github.com/user-attachments/assets/f35ef0eb-2d51-4750-81bd-0108c043301a" />
+
+- Tiếp tục chương trình ta thấy có một chuỗi `why_don'7_y0u_j0in_ro11in6_r3ss????` truyền vào sau `DH{`.
+<img width="1374" height="309" alt="image" src="https://github.com/user-attachments/assets/da3be4ea-2176-41f5-8a2f-18a11226a453" />
+ 
+--> Flag: `DH{why_don'7_y0u_j0in_ro11in6_r3ss????}`
 
 
